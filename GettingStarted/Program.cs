@@ -109,6 +109,7 @@ namespace GettingStarted
                 Console.WriteLine("Pool name: " + pool.Id);
                 Console.WriteLine("   Pool status: " + pool.State);
             }
+
             Console.WriteLine("Press enter to continue.");
             Console.ReadLine();
         }
@@ -133,6 +134,7 @@ namespace GettingStarted
                 Console.WriteLine("Job id: " + job.Id);
                 Console.WriteLine("   Job status: " + job.State);
             }
+
             Console.WriteLine("Press Enter to continue.");
             Console.ReadLine();
         }
@@ -169,7 +171,7 @@ namespace GettingStarted
             }
 
             client.Utilities.CreateTaskStateMonitor().WaitAll(job.ListTasks(),
-        TaskState.Completed, new TimeSpan(0, 30, 0));
+            TaskState.Completed, new TimeSpan(0, 30, 0));
             Console.WriteLine("The tasks completed successfully.");
             foreach (CloudTask task in job.ListTasks())
             {
