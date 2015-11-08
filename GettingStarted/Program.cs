@@ -45,7 +45,8 @@ namespace GettingStarted
         {
             // Get the storage connection string
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                ConfigurationManager.AppSettings["StorageConnectionString"]);
+                ConfigurationManager.AppSettings["StorageConnectionString"]
+                );
 
             // Create the container
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
@@ -78,7 +79,10 @@ namespace GettingStarted
             storageassembly.UploadFromFile("Microsoft.WindowsAzure.Storage.dll", FileMode.Open);
 
             CloudBlockBlob dataprocessor = container.GetBlockBlobReference("ProcessTaskData.exe");
-            dataprocessor.UploadFromFile("..\\..\\..\\ProcessTaskData\\bin\\debug\\ProcessTaskData.exe", FileMode.Open);
+            dataprocessor.UploadFromFile(
+                "..\\..\\..\\ProcessTaskData\\bin\\debug\\ProcessTaskData.exe",
+                FileMode.Open
+                );
 
             Console.WriteLine("Uploaded the files. Press Enter to continue.");
             Console.ReadLine();
@@ -137,18 +141,22 @@ namespace GettingStarted
             CloudJob job = client.JobOperations.GetJob("testjob1");
             ResourceFile programFile = new ResourceFile(
                 "https://mystorage00.blob.core.windows.net/testcon1/ProcessTaskData.exe",
-                "ProcessTaskData.exe");
+                "ProcessTaskData.exe"
+                );
             ResourceFile assemblyFile = new ResourceFile(
                   "https://mystorage00.blob.core.windows.net/testcon1/Microsoft.WindowsAzure.Storage.dll",
-                  "Microsoft.WindowsAzure.Storage.dll");
+                  "Microsoft.WindowsAzure.Storage.dll"
+                  );
             for (int i = 1; i < 4; ++i)
             {
                 string blobName = "taskdata" + i;
                 string taskName = "mytask" + i;
                 ResourceFile taskData = new ResourceFile("https://mystorage00.blob.core.windows.net/testcon1/" +
                   blobName, blobName);
-                CloudTask task = new CloudTask(taskName, "ProcessTaskData.exe https://mystorage00.blob.core.windows.net/testcon1/" +
-                  blobName + " 3");
+                CloudTask task = new CloudTask(
+                    taskName,
+                    "ProcessTaskData.exe https://mystorage00.blob.core.windows.net/testcon1/" +
+                    blobName + " 3");
                 List<ResourceFile> taskFiles = new List<ResourceFile>();
                 taskFiles.Add(taskData);
                 taskFiles.Add(programFile);
