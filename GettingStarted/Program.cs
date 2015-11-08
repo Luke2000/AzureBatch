@@ -94,7 +94,8 @@ namespace GettingStarted
               "testpool1",
               "3",
               "small",
-              3);
+              3
+              );
             newPool.Commit();
             Console.WriteLine("Created the pool. Press Enter to continue.");
             Console.ReadLine();
