@@ -64,7 +64,8 @@ namespace GettingStarted
         static void CreateFiles()
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-              ConfigurationManager.AppSettings["StorageConnectionString"]);
+                ConfigurationManager.AppSettings["StorageConnectionString"]
+                );
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobClient.GetContainerReference("testcon1");
 
@@ -94,7 +95,7 @@ namespace GettingStarted
               "testpool1",
               "3",
               "small",
-              3
+              10
               );
             newPool.Commit();
             Console.WriteLine("Created the pool. Press Enter to continue.");
